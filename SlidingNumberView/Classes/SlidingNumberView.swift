@@ -23,7 +23,7 @@ public class SlidingNumberView: UIView {
     private var fromNumber: String! = "0000"
     private var toNumber: String! = "0000"
     private var counterFont: UIFont!
-    
+    private var counterColor: UIColor = .white
     private var isShrinking: Bool = false
     private var shrinkingTarget: Int = 0
 
@@ -75,6 +75,14 @@ public class SlidingNumberView: UIView {
     public var font: UIFont! {
         didSet {
             self.counterFont = font
+            cleanAndSetup()
+            self.layoutIfNeeded()
+        }
+    }
+    
+    public var color: UIColor! {
+        didSet {
+            self.counterColor = color
             cleanAndSetup()
             self.layoutIfNeeded()
         }
@@ -136,7 +144,8 @@ public class SlidingNumberView: UIView {
     
     public init(startNumber: String,
          endNumber: String,
-         font: UIFont? = UIFont.systemFont(ofSize: 36)) {
+         font: UIFont? = UIFont.systemFont(ofSize: 36),
+         color: UIColor? = .white) {
         let digitCount = startNumber.count
         super.init(frame: CGRect(x: 0, y: 0, width: font!.pointSize * CGFloat(digitCount), height: font!.pointSize))
         
@@ -144,6 +153,7 @@ public class SlidingNumberView: UIView {
         self.fromNumber = startNumber
         self.toNumber = endNumber
         self.counterFont = font
+        self.counterColor = color!
         
         initializeStackViews()
         self.layoutIfNeeded()
@@ -185,6 +195,7 @@ public class SlidingNumberView: UIView {
             
             let labelStackView = SlidingNumberStrips(frame: .zero)
             labelStackView.labelFont = counterFont
+            labelStackView.labelColor = counterColor
             labelStackView.displacementValue = Int(charCount)
             if let currentNo = char.wholeNumberValue {
                 labelStackView.currentNumber = currentNo
@@ -308,6 +319,7 @@ public class SlidingNumberView: UIView {
         super.init(coder: aDecoder)
         self.layer.masksToBounds = true
         self.counterFont = UIFont.systemFont(ofSize: 36)
+        self.color = UIColor.white
         initializeStackViews()
         self.layoutIfNeeded()
     }
