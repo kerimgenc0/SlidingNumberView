@@ -15,7 +15,7 @@ public class SlidingNumberStrips: UIStackView {
     private var previousNumber: Int!
     var targetNumber: Int!
     var labelSize: CGSize!
-    
+    var labelColor: UIColor = .white
     var currentNumber: Int! {
         didSet {
             if let _ = previousNumber {
@@ -56,6 +56,7 @@ public class SlidingNumberStrips: UIStackView {
             for _ in 0..<displacementValue {
                 let tempLabel = UILabel(frame: .zero)
                 tempLabel.font = labelFont
+                tempLabel.textColor = labelColor
                 tempLabel.text = "\(tempNo)"
                 tempLabel.textAlignment = .center
                 self.addArrangedSubview(tempLabel)
