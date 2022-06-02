@@ -75,6 +75,12 @@ public class SlidingNumberView: UIView {
         }
     }
     
+    public var from: String {
+        get {
+            return fromNumber
+        }
+    }
+    
     /// The font used to initialize the labels for counting. (It currently supports system font of any size)
     public var font: UIFont! {
         didSet {
