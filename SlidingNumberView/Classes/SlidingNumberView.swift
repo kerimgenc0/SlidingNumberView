@@ -49,10 +49,6 @@ public class SlidingNumberView: UIView {
             }
             cleanAndSetup()
         }
-        
-        get {
-            return self.fromNumber
-        }
     }
     
     /// The end number of the sliding animation. MUST be in String with the same digits as the startNumber
